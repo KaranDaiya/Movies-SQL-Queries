@@ -1,0 +1,23 @@
+CREATE SCHEMA `Movies` ; -- To create Movies schema
+CREATE TABLE `Movies`.`new_table` ( -- To create new table "new_table" in "Movies" database
+  `Year` INT NOT NULL,
+  `Length` INT NOT NULL,
+  `Title` VARCHAR(45) NOT NULL,
+  `Subject` VARCHAR(45) NOT NULL,
+  `Actor` VARCHAR(45) NOT NULL,
+  `Actress` VARCHAR(45) NOT NULL,
+  `Director` VARCHAR(45) NOT NULL,
+  `Popularity` INT NOT NULL,
+  `Awards` BLOB NOT NULL,
+  PRIMARY KEY (`Title`)); -- primary key is assigned to "Titile"
+  SELECT * FROM Movies.new_table;
+  ALTER TABLE `Movies`.`new_table` 
+CHANGE COLUMN `Awards` `Awards` VARCHAR(45) NOT NULL ; -- BLOB was not working so setting Varchar as data type
+USE Movies; -- telling editor to use Movies schema only
+SELECT Title, Subject, Popularity, Awards FROM new_table -- to select only title, subject and awards from the new_table
+	WHERE Subject= 'Comedy' AND Awards = 'Yes' -- filtering only Comedy genre and the awarded films only
+	ORDER BY Popularity; -- to set the order of result according to their Popularity
+SELECT Title, Popularity from new_table where Popularity = (SELECT Min(Popularity) from new_table);-- MIN function selects minimum value in popularity and return corresponsing name of movie
+SELECT Title, Actor, Director from new_table -- to select only title, actors and directors from new_table
+	WHERE Actor= 'Wayne, John'; -- filtering actors by John Wayne only 
+
